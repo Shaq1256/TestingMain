@@ -24,10 +24,11 @@ public class CollectionTestSuite {
         OddNumbersExterminator.exterminate(list);
         //Then
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
-        if (list.size() <= 0){
-            System.out.println("The list is empty.");
-        } else {
+        if (list.size() > 0){
             Assert.assertEquals(list, result);
+            System.out.println("ArrayList objects: " + OddNumbersExterminator.exterminate(list));
+        } else {
+            System.out.println("The list is empty.");
         }
     }
     @Test
@@ -39,10 +40,10 @@ public class CollectionTestSuite {
         list.add(7);
         list.add(8);
         list.add(9);
-        System.out.println(list);
+        System.out.println("ArrayList objects: " + list);
         //When
         OddNumbersExterminator.exterminate(list);
-        System.out.println(OddNumbersExterminator.exterminate(list));
+        System.out.println("ArrayList objects after odd numbers exterminate: " + OddNumbersExterminator.exterminate(list));
         //Then
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
         Assert.assertNotEquals(list, result);
