@@ -42,7 +42,6 @@ public class CollectionTestSuite {
         list.add(9);
         System.out.println("ArrayList objects: " + list);
         //When
-        OddNumbersExterminator.exterminate(list);
         System.out.println("ArrayList objects after odd numbers exterminate: " + OddNumbersExterminator.exterminate(list));
         //Then
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
