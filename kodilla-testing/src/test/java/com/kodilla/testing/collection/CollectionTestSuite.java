@@ -24,12 +24,8 @@ public class CollectionTestSuite {
         OddNumbersExterminator.exterminate(list);
         //Then
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
-        if (list.size() > 0){
-            Assert.assertEquals(list, result);
-            System.out.println("ArrayList objects: " + OddNumbersExterminator.exterminate(list));
-        } else {
-            System.out.println("The list is empty.");
-        }
+        Assert.assertEquals(list, result);
+        System.out.println("ArrayList objects: " + OddNumbersExterminator.exterminate(list));
     }
     @Test
     public void testOddNumbersExterminatorNormalList() {
