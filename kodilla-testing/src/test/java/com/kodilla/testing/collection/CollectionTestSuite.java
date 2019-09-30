@@ -37,10 +37,12 @@ public class CollectionTestSuite {
         list.add(8);
         list.add(9);
         System.out.println("ArrayList objects: " + list);
+        ArrayList<Integer> list2 = new ArrayList<Integer>();
+        list2.add(2,8);
         //When
         System.out.println("ArrayList objects after odd numbers exterminate: " + OddNumbersExterminator.exterminate(list));
         //Then
         ArrayList<Integer> result = OddNumbersExterminator.exterminate(list);
-        Assert.assertNotEquals(list, result);
+        Assert.assertEquals(list2, result);
     }
 }
