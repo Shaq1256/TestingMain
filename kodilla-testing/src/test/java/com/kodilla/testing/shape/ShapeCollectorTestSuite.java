@@ -2,7 +2,7 @@ package com.kodilla.testing.shape;
 
 import org.junit.*;
 
-public class shapeCollectorTestSuite {
+public class ShapeCollectorTestSuite {
     private static int testCounter = 0;
 
     @BeforeClass
@@ -18,18 +18,19 @@ public class shapeCollectorTestSuite {
     @Before
     public void beforeEveryTest() {
         testCounter++;
-        System.out.println("Preparing to execute test #" + testCounter);
+        System.out.println("Preparing to execute test: " + testCounter);
     }
 
     @Test
     public void testAddFigure() {
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
-        //When
         Circle circle = new Circle("circle1", 4);
+        //When
         shapeCollector.addFigure(circle);
         //Then
-        Assert.assertEquals(1, shapeCollector.shapes.size());
+        Assert.assertEquals(1, shapeCollector.getFiguresCollection().size());
+        Assert.assertEquals(circle, shapeCollector.getFiguresCollection().get(0));
     }
 
     @Test
@@ -37,12 +38,16 @@ public class shapeCollectorTestSuite {
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         Circle circle = new Circle("circle1", 4);
+        Triangle triangle = new Triangle("Triangle1", 5);
         shapeCollector.addFigure(circle);
+        shapeCollector.addFigure(triangle);
         //When
-        Shape retrivedShape = shapeCollector.getFigure(0);
+        Shape retrivedShape = shapeCollector.getFigure(1);
         //Then
-        Assert.assertEquals(circle, retrivedShape);
+        Assert.assertEquals(triangle, retrivedShape);
     }
+
+
     @Test
     public void testRemoveFigure(){
         //Given
@@ -50,10 +55,9 @@ public class shapeCollectorTestSuite {
         Circle circle = new Circle("circle1", 4);
         shapeCollector.addFigure(circle);
         //When
-        boolean removeFigure = shapeCollector.removeFigure(circle);
+        shapeCollector.removeFigure(circle);
         //Then
-        Assert.assertTrue(removeFigure);
-        Assert.assertEquals(0, shapeCollector.shapes.size());
+        Assert.assertEquals(0, shapeCollector.getFiguresCollection().size());
     }
 
 }

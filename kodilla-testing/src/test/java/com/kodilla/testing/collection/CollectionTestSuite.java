@@ -38,7 +38,8 @@ public class CollectionTestSuite {
         list.add(9);
         System.out.println("ArrayList objects: " + list);
         ArrayList<Integer> list2 = new ArrayList<Integer>();
-        list2.add(2,8);
+        list2.add(2);
+        list2.add(8);
         //When
         System.out.println("ArrayList objects after odd numbers exterminate: " + OddNumbersExterminator.exterminate(list));
         //Then
