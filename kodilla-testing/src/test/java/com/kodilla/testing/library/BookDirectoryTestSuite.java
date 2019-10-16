@@ -24,7 +24,7 @@ public class BookDirectoryTestSuite {
         resultListOfBooks.add(book2);
         resultListOfBooks.add(book3);
         resultListOfBooks.add(book4);
-        when(libraryDatabaseMock.listBookWithCondition("Secret")).thenReturn(resultListOfBooks);
+        when(libraryDatabaseMock.listBooksWithCondition("Secret")).thenReturn(resultListOfBooks);
 
         //When
         List<Book> theListOfBooks = bookLibrary.listBooksWithCondition("Secret");
@@ -33,23 +33,24 @@ public class BookDirectoryTestSuite {
     }
     @Test
     public void testListBooksWithConditionMoreThan20(){
-        //Given
-        LibraryDatabase libraryDatabase = mock(LibraryDatabase.class);
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabase);
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf0Books = new ArrayList<Book>();
         List<Book> resultListOf15Books = generateListOfNBooks(15);
         List<Book> resultListOf40Books = generateListOfNBooks(40);
         when(libraryDatabaseMock.listBooksWithCondition(anyString())).thenReturn(resultListOf15Books);
         when(libraryDatabaseMock.listBooksWithCondition("ZeroBooks")).thenReturn(resultListOf0Books);
         when(libraryDatabaseMock.listBooksWithCondition("FortyBooks")).thenReturn(resultListOf40Books);
-        //When
+
+        // When
         List<Book> theListOfBooks0 = bookLibrary.listBooksWithCondition("ZeroBooks");
         List<Book> theListOfBooks15 = bookLibrary.listBooksWithCondition("Any title");
         List<Book> theListOfBooks40 = bookLibrary.listBooksWithCondition("FortyBooks");
-        //Then
+        // Then
         assertEquals(0, theListOfBooks0.size());
         assertEquals(15, theListOfBooks15.size());
-        assertEquals(40, theListOfBooks40.size());
+        assertEquals(0, theListOfBooks40.size());
     }
     @Test
     public void testListBooksWithConditionFragmentShorterThan3(){
@@ -57,12 +58,12 @@ public class BookDirectoryTestSuite {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf10Books = generateListOfNBooks(10);
-        when(libraryDatabaseMock.listBookWithCondition(anyString())).thenReturn(resultListOf10Books);
+        when(libraryDatabaseMock.listBooksWithCondition(anyString())).thenReturn(resultListOf10Books);
         //When
         List<Book> theListOfBooks10 = bookLibrary.listBooksWithCondition("An");
         //Then
         assertEquals(0, theListOfBooks10.size());
-        verify(libraryDatabaseMock, times(0)).listBookWithCondition(anyString());
+        verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());
     }
 
     private List<Book> generateListOfNBooks(int booksQuantity) {

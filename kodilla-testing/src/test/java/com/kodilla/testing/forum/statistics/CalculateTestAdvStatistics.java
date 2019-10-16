@@ -6,50 +6,64 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class CalculateTestAdvStatistics {
     @Test
     public void countPostsZero(){
         //When
-        Statistics statistics = new MockStatistics();
-        AdvStatistics avdStatistics = new AdvStatistics();
+        Statistics statisticsMock = mock(Statistics.class);
+        when(statisticsMock.postsCount()).thenReturn(0);
+        AdvStatistics advStatistics = new AdvStatistics();
         //Given
-        avdStatistics.calculateAvdStatistics(statistics);
+        advStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        Assert.assertEquals(0, avdStatistics.postCount());
+        Assert.assertEquals(0, advStatistics.postCount());
     }
     @Test
     public void countPostsThousand(){
         //When
-        Statistics statistics = new MockStatistics();
-        AdvStatistics avdStatistics = new AdvStatistics();
+        Statistics statisticsMock = mock(Statistics.class);
+        when(statisticsMock.postsCount()).thenReturn(1000);
+        AdvStatistics advStatistics = new AdvStatistics();
         //Given
-        for(int i=0; i<1000; i++){
-            ((MockStatistics)statistics).addPost("a");
-        }
-        avdStatistics.calculateAvdStatistics(statistics);
+        advStatistics.calculateAdvStatistics(statisticsMock);
         //Then
-        Assert.assertEquals(1000, avdStatistics.postCount());
+        Assert.assertEquals(1000, advStatistics.postCount());
     }
-
-    private class MockStatistics implements Statistics{
-        List<String> postCountList = new ArrayList<>();
-
-        public void addPost(String post){
-            postCountList.add(post);
-        }
-        @Override
-        public List<String> usersName() {
-            return null;
-        }
-
-        @Override
-        public int postsCount() {
-            return postCountList.size();
-        }
-
-        @Override
-        public int commentsCount() {
-            return 0;
-        }
+    @Test
+    public void countComments0() {
+        //When
+        Statistics statisticsMock = mock(Statistics.class);
+        when(statisticsMock.commentsCount()).thenReturn(0);
+        AdvStatistics advStatistics = new AdvStatistics();
+        //Given
+        advStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        Assert.assertEquals(0, advStatistics.commentsCount());
+    }
+    @Test
+    public void countCommentsLessThenPosts(){
+        //When
+        Statistics statisticsMock = mock(Statistics.class);
+        AdvStatistics advStatistics = new AdvStatistics();
+        when(statisticsMock.commentsCount()).thenReturn(5);
+        when(statisticsMock.postsCount()).thenReturn(10);
+        // Given
+        advStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        Assert.assertEquals(0.5 , advStatistics.getAvgCommentsPerPosts(), 0.01);
+    }
+    @Test
+    public void usersCount0(){
+        //When
+        Statistics statisticsMock = mock(Statistics.class);
+        AdvStatistics advStatistics = new AdvStatistics();
+        when(statisticsMock.usersName().size()).thenReturn(0);
+        //Given
+        advStatistics.calculateAdvStatistics(statisticsMock);
+        //Then
+        Assert.assertEquals(0 , advStatistics.getUsersNameList());
     }
 }
