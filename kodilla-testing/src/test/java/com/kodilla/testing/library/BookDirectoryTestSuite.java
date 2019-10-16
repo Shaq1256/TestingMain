@@ -68,7 +68,7 @@ public class BookDirectoryTestSuite {
 
     private List<Book> generateListOfNBooks(int booksQuantity) {
         List<Book> resultList = new ArrayList<Book>();
-        for(int n=0; n <= booksQuantity; n++) {
+        for(int n=0; n < booksQuantity; n++) {
             Book theBook = new Book("Title " + n, "Author " + n, 1970 + n);
             resultList.add(theBook);
         }

@@ -23,14 +23,14 @@ public class AdvStatistics {
         return noOfComments;
     }
     public double getAvgPostsPerUser(){
-        return noOfComments/noOfPosts;
+        return (double)noOfComments/noOfPosts;
     }
     public double getAvgCommentsPerUser(){
-        return noOfComments/usersNameList.size();
+        return (double)noOfComments/(double)usersNameList.size();
     }
     public  double getAvgCommentsPerPosts(){
         System.out.println(noOfComments+" " +noOfPosts);
-        return noOfComments/noOfPosts;
+        return (double)noOfComments/(double)noOfPosts;
 
     }
 
