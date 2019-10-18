@@ -73,9 +73,9 @@ public class BookDirectoryTestSuite {
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf0Books = generateListOfNBooks(0);
         LibraryUser libraryUser = new LibraryUser("Lukasz", "Mioduszewski", "12345");
-        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser).thenReturn(resultListOf0Books));
+        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf0Books);
         //When
-        List<Book> theListOfBooks0 = bookLibrary.listBooksInHandsOf();
+        List<Book> theListOfBooks0 = bookLibrary.listBooksInHandsOf(libraryUser);
         //Then
         assertEquals(0, theListOfBooks0.size());
     }
@@ -85,9 +85,10 @@ public class BookDirectoryTestSuite {
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf1Book = generateListOfNBooks(1);
-        when(libraryDatabaseMock.listBooksInHandsOf().thenReturn(resultListOf1Book);
+        LibraryUser libraryUser = new LibraryUser("Lukasz", "Mioduszewski", "12345");
+        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf1Book);
         //When
-        List<Book> theListOfBooks1 = bookLibrary.listBooksInHandsOf();
+        List<Book> theListOfBooks1 = bookLibrary.listBooksInHandsOf(libraryUser);
         //Then
         assertEquals(1, theListOfBooks1.size());
     }
@@ -98,7 +99,7 @@ public class BookDirectoryTestSuite {
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> resultListOf5Books = generateListOfNBooks(5);
         LibraryUser libraryUser = new LibraryUser("Lukasz", "Mioduszewski", "12345");
-        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser).thenReturn(resultListOf5Books);
+        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser)).thenReturn(resultListOf5Books);
         //When
         List<Book> theListOfBooks5 = bookLibrary.listBooksInHandsOf(libraryUser);
         //Then

@@ -20,6 +20,9 @@ public class BookLibrary {
     }
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
-        return null;
+        List<Book> bookList = new ArrayList<Book>();
+//        bookList.add(0, new Book("Pan Tadeusz", "ja", 1999));
+
+        return bookList;
     }
 }
