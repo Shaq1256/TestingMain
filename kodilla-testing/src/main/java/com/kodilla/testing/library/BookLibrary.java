@@ -20,9 +20,7 @@ public class BookLibrary {
     }
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
-        List<Book> bookList = new ArrayList<Book>();
-//        bookList.add(0, new Book("Pan Tadeusz", "ja", 1999));
-
+        List<Book> bookList = libraryDatabase.listBooksInHandsOf(libraryUser);
         return bookList;
     }
 }
