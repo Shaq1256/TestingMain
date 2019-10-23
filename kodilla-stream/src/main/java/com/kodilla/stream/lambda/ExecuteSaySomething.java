@@ -1,4 +1,4 @@
-package lambda;
+package com.kodilla.stream.lambda;
 
 public class ExecuteSaySomething implements Executor {
 
