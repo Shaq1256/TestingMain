@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class ForumTestUserSuite {
     private static int testCounter = 0;
@@ -38,17 +39,18 @@ public class ForumTestUserSuite {
         int result = forumUser.getPostsCount();
         System.out.println("Testing posts count: " + result);
         //Then
-        Assert.assertEquals(11, result);
+        Assert.assertTrue(result>=1);
     }
 
     @Test
-    public void testAge() {
+    public void testAgeMoreThen20() {
         //Given
         ForumUser forumUser = new ForumUser(7, "Adam Satlawa", 'M', 1993,6,29, 11);
         //When
         LocalDate result = forumUser.getDateOfBirth();
         System.out.println("Testing age > 20: " + result);
         //Then
-        Assert.assertEquals(26, result);
+        int age = Period.between(result, LocalDate.now()).getYears();
+        Assert.assertTrue("User is younger than 20", age>=20);
     }
 }
