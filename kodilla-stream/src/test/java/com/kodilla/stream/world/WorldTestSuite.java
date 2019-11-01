@@ -17,13 +17,15 @@ public class WorldTestSuite {
         countries.add(new Country("Poland", new BigDecimal(35000)));
         countries.add(new Country("Spain", new BigDecimal(45000)));
         continents.add(new Continent(countries, "Europe"));
+        continents.add(new Continent(countries, "America"));
         world.setContinentList(continents);
         //When
-        BigDecimal worldPeopleQuantity = continents.stream()
-                .flatMap(world::setContinentList)
-                .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
+        BigDecimal worldPeopleQuantity = world.getContinentList().stream()
+                .flatMap(continent -> continent.getCountryList().stream()
+                        .map(country -> country.getPeopleQuantity())
+                        .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
         //Then
-        BigDecimal expectedSand = new BigDecimal("80000");
-        Assert.assertEquals(expectedSand, worldPeopleQuantity);
+        BigDecimal expectedQuantity = new BigDecimal("80000");
+        Assert.assertEquals(expectedQuantity, worldPeopleQuantity);
     }
 }

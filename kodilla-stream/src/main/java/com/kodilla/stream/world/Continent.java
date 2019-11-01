@@ -11,4 +11,12 @@ public class Continent {
         this.countryList = countryList;
         this.continentName = continentName;
     }
+
+    public String getContinentName() {
+        return continentName;
+    }
+
+    public List<Country> getCountryList() {
+        return countryList;
+    }
 }
