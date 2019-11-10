@@ -9,8 +9,8 @@ public class ArrayOperationsTestSuite {
         //Given
         int[] numbers = new int[] {2, 4, 6, 3, 9, 7, 1, 4};
         //When
-        ArrayOperations.getAverage(numbers);
+        double avg = ArrayOperations.getAverage(numbers);
         //Then
-        Assert.assertEquals(4.5, numbers);
+        Assert.assertEquals(4.5, avg, 0.01);
     }
 }
