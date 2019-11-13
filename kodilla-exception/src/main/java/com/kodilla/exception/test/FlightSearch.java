@@ -24,4 +24,8 @@ public class FlightSearch {
         }
         return true;
     }
+
+    public static void Main(String[] args) {
+        
+    }
 }
