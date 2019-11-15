@@ -17,9 +17,9 @@ public class FlightSearch {
     }
     Boolean findFlight(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> directions = initDirections();
-        if(!directions.entrySet().contains(flight.getDepartureAirport()) || !directions.entrySet().contains(flight.getArrivalAirport())) {
+        if(!directions.containsKey(flight.getDepartureAirport()) || !directions.containsKey(flight.getArrivalAirport())) {
             throw new RouteNotFoundException();
-        } else if (directions.containsValue(false)) {
+        } else if (!directions.get(flight.getDepartureAirport())) {
             throw new RouteNotFoundException();
         }
         return true;
