@@ -1,6 +1,6 @@
 package com.kodilla.exception.test;
 
-import javax.management.relation.RoleInfoNotFoundException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,17 +15,15 @@ public class FlightSearch {
 
         return directions;
     }
-    Boolean findFlight(Flight flight) throws RoleInfoNotFoundException {
+    Boolean findFlight(Flight flight) throws RouteNotFoundException {
         Map<String, Boolean> directions = initDirections();
         if(!directions.entrySet().contains(flight.getDepartureAirport()) || !directions.entrySet().contains(flight.getArrivalAirport())) {
-            throw new RoleInfoNotFoundException();
+            throw new RouteNotFoundException();
         } else if (directions.containsValue(false)) {
-            throw new RoleInfoNotFoundException();
+            throw new RouteNotFoundException();
         }
         return true;
     }
 
-    public static void Main(String[] args) {
-        
-    }
+
 }
