@@ -13,12 +13,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import javax.smartcardio.Card;
 
 public class BlackJack extends Application{
-    private final Deck deck = new Deck(1);
+    private final Deck deck = new Deck();
     private final Hand hand = new Hand();
     private final Hand dealer = new Hand();
 
@@ -40,14 +39,15 @@ public class BlackJack extends Application{
     public void drawCard (Hand hand, FlowPane pane, Label l) {
         try {
             Card card = deck.dealCard();
-            ImageView img = new ImageView(card.getCardImage());
+//            ImageView img = new ImageView(card.getCardImage());
+            ImageView img = new ImageView("file:C:\\Users\\Lukasz\\IdeaProjects\\MyProjects\\kodilla-course2\\resources\\karta.jpg");
             pane.getChildren().add(img);
             hand.addCard(card);
 
             int handTotal = hand.evaluateHand();
 
             StringBuilder total = new StringBuilder();
-            if (hand.getSotf() > 0) {
+            if (hand.getSoft() > 0) {
                 total.append(handTotal - 10).append("/");
             }
             total.append(handTotal);
@@ -114,7 +114,7 @@ public class BlackJack extends Application{
             if (playerTurn && !busted) {
                 drawCard(hand, cards, totalLabel);
 
-                if (hand.evluateHand() > 21) {
+                if (hand.evaluateHand() > 21) {
                     System.out.println("Przegrałeś");
                     busted = true;
                     playerTurn = false;
@@ -131,7 +131,7 @@ public class BlackJack extends Application{
                 while (dealer.evaluateHand() < 17) {
                     drawCard(dealer, dealerCards, totalLabelDealer);
                 }
-                int playerTotal = hand.evaluateHnad();
+                int playerTotal = hand.evaluateHand();
                 int dealerTotal = dealer.evaluateHand();
 
                 System.out.println("Karty gracza: " + hand);
