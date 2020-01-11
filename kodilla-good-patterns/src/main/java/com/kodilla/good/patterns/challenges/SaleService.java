@@ -1,4 +1,4 @@
 package com.kodilla.good.patterns.challenges;
 
-public interface RentalService {
+public interface SaleService {
 }

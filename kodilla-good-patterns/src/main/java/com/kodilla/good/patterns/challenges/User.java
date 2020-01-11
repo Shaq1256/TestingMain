@@ -1,5 +1,7 @@
 package com.kodilla.good.patterns.challenges;
 
+import java.util.Objects;
+
 public class User {
     String name;
     String Surname;
@@ -24,8 +26,8 @@ public class User {
 
         User user = (User) o;
 
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return Surname != null ? Surname.equals(user.Surname) : user.Surname == null;
+        if (!Objects.equals(name, user.name)) return false;
+        return Objects.equals(Surname, user.Surname);
     }
 
     @Override
