@@ -1,24 +1,19 @@
 package com.kodilla.good.patterns.challenges;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 
 public class Application {
     public static void main(String[] args) {
         User user = new User("Tomasz", "Hajto");
+        SaleRequest saleRequest = new SaleRequest(user, "Piłka", LocalDateTime.now());
 
-        LocalDateTime orderDate = LocalDateTime.of(2019, Month.APRIL, 10, 11, 11, 11);
+        SaleServiceImpl saleService = new SaleServiceImpl();
+        SaleRepositoryImpl saleRepository = new SaleRepositoryImpl();
+        InformationServiceImpl informationService = new InformationServiceImpl();
 
-        SaleRequest saleRequest = new SaleRequest();
-        boolean isSold = saleRequest.sale(user, orderDate);
+        ProductOrderService productOrderService = new ProductOrderService(informationService, saleService, saleRepository);
 
-        MailService mailService = new MailService();
-
-        if (isSold) {
-            mailService.sendEmail(user.getName()+" "+user.getSurname());
-        } else {
-            System.out.println("Sale request has been rejected!!!");
-        }
-
+        SaleDto saleDto = productOrderService.process(saleRequest);
+        System.out.println("Płatność skończyła się ze statusem: " + saleDto.isSold);
     }
 }

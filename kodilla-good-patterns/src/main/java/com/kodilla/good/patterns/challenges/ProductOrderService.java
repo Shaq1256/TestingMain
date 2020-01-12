@@ -1,26 +1,25 @@
 package com.kodilla.good.patterns.challenges;
 
 public class ProductOrderService {
-    private InformationService informationService;
-    private SaleService saleService;
-    private SaleRepository saleRepository;
-    private SaleRequest saleRequest;
+    private InformationServiceImpl informationService;
+    private SaleServiceImpl saleService;
+    private SaleRepositoryImpl saleRepository;
+    User user;
 
-    public ProductOrderService(final InformationService informationService, final SaleService saleService, final SaleRepository saleRepository, final SaleRequest saleRequest) {
+    public ProductOrderService(final InformationServiceImpl informationService, final SaleServiceImpl saleService, final SaleRepositoryImpl saleRepository) {
         this.informationService = informationService;
         this.saleService = saleService;
         this.saleRepository = saleRepository;
-        this.saleRequest = saleRequest;
     }
 
-//    public SaleDto process(final SaleRequest rentRequest) {
-//        boolean isSold = saleService.rent(user);
-//        if (isSold) {
-//            informationService.inform(saleRequest.getUser());
-//            saleRepository.createSale(rentRequest.getUser(), rentRequest.getFrom(), rentRequest.getTo());
-//            return new SaleDto(rentRequest.getUser(), true);
-//        } else {
-//            return new SaleDto(rentRequest.getUser(), false);
-//        }
-//    }
+    public SaleDto process(final SaleRequest saleRequest) {
+        boolean isSold = saleService.sell(saleRequest);
+        if (isSold) {
+            informationService.informationService(saleRequest);
+            saleRepository.saleRepo(saleRequest);
+            return new SaleDto(user, true);
+        } else {
+            return new SaleDto(user, false);
+        }
+    }
 }

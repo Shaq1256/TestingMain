@@ -2,18 +2,18 @@ package com.kodilla.good.patterns.challenges;
 
 public class SaleDto {
    public User user;
-   public Boolean isRented;
+   public Boolean isSold;
 
-    public SaleDto(User user, Boolean isRented) {
+    public SaleDto(User user, Boolean isSold) {
         this.user = user;
-        this.isRented = isRented;
+        this.isSold = isSold;
     }
 
     public User getUser() {
         return user;
     }
 
-    public Boolean getRented() {
-        return isRented;
+    public Boolean getIsSold() {
+        return isSold;
     }
 }
