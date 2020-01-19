@@ -1,19 +1,22 @@
 package com.kodilla.good.patterns.food;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
 
-        ArrayList producersList = new ArrayList();
-        producersList.add("HealthyShop");
-        producersList.add("ExtraFoodShop");
-        producersList.add("GlutenFreeShop");
+        ExtraFoodShop extraFoodShop = new ExtraFoodShop("ExtraFoodShop");
+        HealthyShop healthyShop = new HealthyShop("HealthyShop");
+        GlutenFreeShop glutenFreeShop = new GlutenFreeShop("GlutenFreeShop");
 
-        Provider provider = new Provider();
+        List<OrderServiceProcess> producersList = new ArrayList<OrderServiceProcess>();
+        producersList.add(extraFoodShop);
+        producersList.add(healthyShop);
+        producersList.add(glutenFreeShop);
 
-        for (Object o : producersList) {
-            provider.process(o.toString());
+        for (int i=0; i<producersList.size(); i++) {
+            producersList.get(i).process();
         }
     }
 }
