@@ -1,7 +1,6 @@
 package com.kodilla.good.patterns.airlines;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class FlightSearch {
 
@@ -15,16 +14,34 @@ public class FlightSearch {
         return directions;
     }
 
-    public Map<String, String> mapConnections() {
-        Map<String, String> connections = new HashMap<>();
-        connections.put("Gdansk", "Katowice");
-        connections.put("Gdansk", "Warszawa");
-        connections.put("Gdansk", "Wroclaw");
-        connections.put("Warszawa", "Katowice");
-        connections.put("Warszawa", "Wroclaw");
-        connections.put("Warszawa", "Gdansk");
-        connections.put("Katowice", "Wroclaw");
-        return connections;
+//    public Map<String, String> mapConnections() {
+//        Map<String, String> connections = new HashMap<>();
+//        connections.put("Gdansk", "Katowice");
+//        connections.put("Gdansk", "Warszawa");
+//        connections.put("Gdansk", "Wroclaw");
+//        connections.put("Warszawa", "Katowice");
+//        connections.put("Warszawa", "Wroclaw");
+//        connections.put("Warszawa", "Gdansk");
+//        connections.put("Katowice", "Wroclaw");
+//        return connections;
+//    }
+
+    List<Flight> mapConnection = Arrays.asList(
+            new Flight("Gdansk", "Katowice"),
+            new Flight("Gdansk", "Warszawa"),
+            new Flight("Gdansk", "Wroclaw"),
+            new Flight("Warszawa", "Katowice"),
+            new Flight("Warszawa", "Wroclaw"),
+            new Flight("Warszawa", "Gdansk"),
+            new Flight("Katowice", "Wroclaw")
+    );
+
+    public void findConnections() {
+        mapConnection.stream()
+                .filter(flight -> flight.getDepartureAirport().equals("Gdansk"))
+//                .filter(flight -> flight.getArrivalAirport().equals("Katowice"))
+                .map(flight -> flight.getDepartureAirport() + " " + flight.getArrivalAirport())
+                .forEach(System.out::println);
     }
 
 
@@ -37,16 +54,5 @@ public class FlightSearch {
         }
         return true;
     }
-
-    Boolean findConnections(Flight flight) {
-        Map<String, String> connections = mapConnections();
-        if(connections.containsKey(flight.getDepartureAirport()) || connections.containsValue(flight.getArrivalAirport())){
-            Map<String, String> ourConnections = new HashMap<>();
-            ourConnections.put(connections.get(flight.getDepartureAirport()), connections.get(flight.getArrivalAirport()));
-            System.out.println(ourConnections);
-        }
-        return true;
-    }
-
 
 }

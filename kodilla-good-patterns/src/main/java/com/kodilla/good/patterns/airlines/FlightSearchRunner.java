@@ -7,13 +7,14 @@ public class FlightSearchRunner {
 
         try {
             flightSearch.findFlight(flight);
-            flightSearch.findConnections(flight);
             System.out.println("Your flight from " + flight.getDepartureAirport() + " to " + flight.getArrivalAirport());
         } catch (RouteNotFoundException e) {
             System.out.println("No flights for this City!!!");
         } finally {
             System.out.println("Your result above.");
         }
+
+        flightSearch.findConnections();
 
     }
 }
