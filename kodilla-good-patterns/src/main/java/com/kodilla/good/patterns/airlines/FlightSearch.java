@@ -39,7 +39,10 @@ public class FlightSearch {
     public void findConnections() {
         mapConnection.stream()
                 .filter(flight -> flight.getDepartureAirport().equals("Gdansk"))
-//                .filter(flight -> flight.getArrivalAirport().equals("Katowice"))
+                .map(flight -> flight.getDepartureAirport() + " " + flight.getArrivalAirport())
+                .forEach(System.out::println);
+        mapConnection.stream()
+                .filter(flight -> flight.getArrivalAirport().equals("Katowice"))
                 .map(flight -> flight.getDepartureAirport() + " " + flight.getArrivalAirport())
                 .forEach(System.out::println);
     }
