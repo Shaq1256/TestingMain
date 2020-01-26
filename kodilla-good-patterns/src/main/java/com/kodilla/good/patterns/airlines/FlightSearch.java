@@ -1,61 +1,60 @@
 package com.kodilla.good.patterns.airlines;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FlightSearch {
 
-    public Map<String, Boolean> initDirections() {
-        Map<String, Boolean> directions = new HashMap<>();
-        directions.put("Gdansk", true);
-        directions.put("Wroclaw", true);
-        directions.put("Warszawa", true);
-        directions.put("Katowice", true);
+    HashSet<Flight> connectionsSet = new HashSet<>();
 
-        return directions;
+    void prepareSet() {
+        connectionsSet.add(new Flight("Gdansk", "Katowice"));
+        connectionsSet.add(new Flight("Gdansk", "Warszawa"));
+        connectionsSet.add(new Flight("Gdansk", "Wroclaw"));
+        connectionsSet.add(new Flight("Warszawa", "Katowice"));
+        connectionsSet.add(new Flight("Warszawa", "Wroclaw"));
+        connectionsSet.add(new Flight("Warszawa", "Gdansk"));
+        connectionsSet.add(new Flight("Katowice", "Wroclaw"));
     }
 
-//    public Map<String, String> mapConnections() {
-//        Map<String, String> connections = new HashMap<>();
-//        connections.put("Gdansk", "Katowice");
-//        connections.put("Gdansk", "Warszawa");
-//        connections.put("Gdansk", "Wroclaw");
-//        connections.put("Warszawa", "Katowice");
-//        connections.put("Warszawa", "Wroclaw");
-//        connections.put("Warszawa", "Gdansk");
-//        connections.put("Katowice", "Wroclaw");
-//        return connections;
-//    }
+    public void findConnections(Flight flight) {
+        List<Flight> flightsTo = connectionsSet.stream()
+                .filter(f -> f.getArrivalAirport().equals(flight.getArrivalAirport()))
+                .collect(Collectors.toList());
 
-    List<Flight> mapConnection = Arrays.asList(
-            new Flight("Gdansk", "Katowice"),
-            new Flight("Gdansk", "Warszawa"),
-            new Flight("Gdansk", "Wroclaw"),
-            new Flight("Warszawa", "Katowice"),
-            new Flight("Warszawa", "Wroclaw"),
-            new Flight("Warszawa", "Gdansk"),
-            new Flight("Katowice", "Wroclaw")
-    );
-
-    public void findConnections() {
-        mapConnection.stream()
-                .filter(flight -> flight.getDepartureAirport().equals("Gdansk"))
-                .map(flight -> flight.getDepartureAirport() + " " + flight.getArrivalAirport())
-                .forEach(System.out::println);
-        mapConnection.stream()
-                .filter(flight -> flight.getArrivalAirport().equals("Katowice"))
-                .map(flight -> flight.getDepartureAirport() + " " + flight.getArrivalAirport())
-                .forEach(System.out::println);
-    }
-
-
-    Boolean findFlight(Flight flight) throws RouteNotFoundException {
-        Map<String, Boolean> directions = initDirections();
-        if(!directions.containsKey(flight.getDepartureAirport()) || !directions.containsKey(flight.getArrivalAirport())) {
-            throw new RouteNotFoundException();
-        } else if (!directions.get(flight.getDepartureAirport())) {
-            throw new RouteNotFoundException();
+        List<Flight> indirectFlights = new ArrayList<>();
+        for(Flight f : flightsTo) {
+            boolean isIndirectAvailable = findFlight(new Flight(flight.getDepartureAirport(), f.departureAirport));
+            if (isIndirectAvailable) {
+                indirectFlights.add(f);
+            }
         }
-        return true;
+        System.out.println("Indirect flights between: " + flight.departureAirport + " and " + flight.arrivalAirport);
+        indirectFlights.stream().forEach(f -> System.out.println("1 change in: " + f.getDepartureAirport()));
+    }
+
+
+    public void getFlightTo(String flight) {
+        connectionsSet.stream()
+                .filter(f -> f.getArrivalAirport().equals(flight))
+                .map(f -> f.getDepartureAirport() + " " + f.getArrivalAirport())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println(" ");
+    }
+
+    public void getFlightFrom(String flight) {
+        connectionsSet.stream()
+                .filter(f -> f.getDepartureAirport().equals(flight))
+                .map(f -> f.getDepartureAirport() + " " + f.getArrivalAirport())
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
+        System.out.println(" ");
+    }
+
+
+    Boolean findFlight(Flight verifiedFlight) {
+        return connectionsSet.contains(verifiedFlight);
     }
 
 }
