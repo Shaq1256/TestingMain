@@ -9,4 +9,5 @@ include 'kodilla-testing'
 include 'kodilla-stream'
 include 'kodilla-exception'
 include 'blackjack'
+include 'kodilla-spring'
 
