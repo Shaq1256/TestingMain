@@ -11,7 +11,7 @@ public class Board {
         this.doneList = doneList;
     }
 
-    public void showTasks() {
-        System.out.println();
+    public String showTasks() {
+        return "toDoLIst size: " + toDoList.getTasks().size() + " inProgresList size: " + inProgressList.getTasks().size() + " doneList size " + doneList.getTasks().size();
     }
 }
