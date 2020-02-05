@@ -15,7 +15,7 @@ public class Application {
         producersList.add(healthyShop);
         producersList.add(glutenFreeShop);
 
-        for (int i=0; i<producersList.size(); i++) {
+        for (int i = 0; i < producersList.size(); i++) {
             producersList.get(i).process();
         }
     }

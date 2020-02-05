@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
 
 public class ChallengesTestSuite {
     @After
-    public void after(){
+    public void after() {
         System.out.println("Test case end.");
     }
+
     @Before
-    public void before(){
+    public void before() {
         System.out.println("Test case begin");
     }
+
     @Test
     public void movieStoreList() {
         //Given

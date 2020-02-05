@@ -9,9 +9,10 @@ public class Square implements Shape {
         this.field = field;
     }
 
-    public String getShapeName(){
+    public String getShapeName() {
         return shapeName;
     }
+
     public Integer getField() {
         return field;
     }

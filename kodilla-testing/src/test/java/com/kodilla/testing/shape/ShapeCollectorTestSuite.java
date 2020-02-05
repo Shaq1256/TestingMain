@@ -49,7 +49,7 @@ public class ShapeCollectorTestSuite {
 
 
     @Test
-    public void testRemoveFigure(){
+    public void testRemoveFigure() {
         //Given
         ShapeCollector shapeCollector = new ShapeCollector();
         Circle circle = new Circle("circle1", 4);

@@ -19,7 +19,7 @@ public class BoardTestSuite {
         User user4 = new User("developer3", "Konrad Bridge");
         //tasks
         Task task1 = new Task("Microservice for taking temperature",
-                "Write and test the microservice taking\n"+
+                "Write and test the microservice taking\n" +
                         "the temperaturefrom external service",
                 user1,
                 user2,
@@ -133,6 +133,7 @@ public class BoardTestSuite {
         //Then
         Assert.assertEquals(2, longTasks);
     }
+
     @Test
     public void testAddTaskListAverageWorkingOnTask() {
         //Given

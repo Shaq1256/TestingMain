@@ -13,22 +13,22 @@ public class Calculator {
     }
 
     public void add(double a, double b) {
-        double result = a+b;
+        double result = a + b;
         display.displayValue(result);
     }
 
     public void sub(double a, double b) {
-        double result = a-b;
+        double result = a - b;
         display.displayValue(result);
     }
 
     public void mul(double a, double b) {
-        double result = a*b;
+        double result = a * b;
         display.displayValue(result);
     }
 
     public void div(double a, double b) {
-        double result = a/b;
+        double result = a / b;
         display.displayValue(result);
     }
 }

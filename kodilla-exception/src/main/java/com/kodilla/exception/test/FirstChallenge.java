@@ -5,13 +5,13 @@ public class FirstChallenge {
         if (b == 0) {
             throw new ArithmeticException();
         }
-        return a/b;
+        return a / b;
     }
 
     public static void main(String[] args) {
         FirstChallenge firstChallenge = new FirstChallenge();
 
-        try  {
+        try {
             double result = firstChallenge.divide(3, 0);
             System.out.println(result);
 

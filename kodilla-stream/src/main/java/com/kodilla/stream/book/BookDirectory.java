@@ -15,6 +15,7 @@ public final class BookDirectory {
         theBookList.add(new Book("Madelynn Carson", "Unity without duty", 2007));
         theBookList.add(new Book("Giancarlo Guerrero", "Enemies of eternity", 2009));
     }
+
     public List<Book> getList() {
         return new ArrayList<>(theBookList);
     }

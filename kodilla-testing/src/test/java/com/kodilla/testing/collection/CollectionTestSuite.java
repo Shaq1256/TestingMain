@@ -1,21 +1,25 @@
 package com.kodilla.testing.collection;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CollectionTestSuite {
     @After
-    public void after(){
+    public void after() {
         System.out.println("Test case end.");
     }
+
     @Before
-    public void before(){
+    public void before() {
         System.out.println("Test case begin");
     }
+
     @Test
     public void testOddNumbersExterminatorEmptyList() {
         //Given
@@ -27,6 +31,7 @@ public class CollectionTestSuite {
         Assert.assertEquals(list, result);
         System.out.println("ArrayList objects: " + OddNumbersExterminator.exterminate(list));
     }
+
     @Test
     public void testOddNumbersExterminatorNormalList() {
         //Given

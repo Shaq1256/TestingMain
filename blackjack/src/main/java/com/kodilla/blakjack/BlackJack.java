@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import javax.smartcardio.Card;
 
-public class BlackJack extends Application{
+public class BlackJack extends Application {
     private final Deck deck = new Deck();
     private final Hand hand = new Hand();
     private final Hand dealer = new Hand();
@@ -36,7 +36,7 @@ public class BlackJack extends Application{
     private Image imageback = new Image("file:C:\\Users\\Lukasz\\IdeaProjects\\MyProjects\\kodilla-course2\\resources\\images.jpg");
 //    private Image card = new Image("file:C:\\Users\\Lukasz\\IdeaProjects\\MyProjects\\kodilla-course2\\resources\\karta.jpg");
 
-    public void drawCard (Hand hand, FlowPane pane, Label l) {
+    public void drawCard(Hand hand, FlowPane pane, Label l) {
         try {
             Card card = deck.dealCard();
 //            ImageView img = new ImageView(card.getCardImage());

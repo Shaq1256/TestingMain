@@ -15,6 +15,7 @@ public class Board {
     public void addTaskList(TaskList taskList) {
         taskLists.add(taskList);
     }
+
     public boolean removeTaskList(TaskList taskList) {
         return taskLists.remove(taskList);
     }

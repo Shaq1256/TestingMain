@@ -23,7 +23,7 @@ public class FlightSearch {
                 .collect(Collectors.toList());
 
         List<Flight> indirectFlights = new ArrayList<>();
-        for(Flight f : flightsTo) {
+        for (Flight f : flightsTo) {
             boolean isIndirectAvailable = findFlight(new Flight(flight.getDepartureAirport(), f.departureAirport));
             if (isIndirectAvailable) {
                 indirectFlights.add(f);

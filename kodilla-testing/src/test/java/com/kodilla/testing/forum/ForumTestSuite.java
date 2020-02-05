@@ -2,23 +2,28 @@ package com.kodilla.testing.forum;
 
 import com.kodilla.testing.user.SimpleUser;
 import org.junit.*;
+
 public class ForumTestSuite {
     @Before
-    public void before(){
+    public void before() {
         System.out.println("Test Case: begin");
     }
+
     @After
-    public void after(){
+    public void after() {
         System.out.println("Test Case: End");
     }
+
     @BeforeClass
-    public static void beforeClass(){
+    public static void beforeClass() {
         System.out.println("Test Suite: begin");
     }
+
     @AfterClass
-    public static void afterClass(){
+    public static void afterClass() {
         System.out.println("Test Suite: End");
     }
+
     @Test
     public void testCauseUsername() {
         //Given
@@ -29,6 +34,7 @@ public class ForumTestSuite {
         //Then
         Assert.assertEquals("theForumUser", result);
     }
+
     @Test
     public void testCaseRealName() {
         //Given
