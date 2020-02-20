@@ -19,9 +19,11 @@ public class TaskFactoryTestSuite {
         Assert.assertEquals("Task has been executed", shopping.executeTask());
         Assert.assertEquals("Task has been executed", painting.executeTask());
         Assert.assertEquals("Task has been executed", driving.executeTask());
-        Assert.assertEquals(false, shopping.isTaskExecuted());
-        Assert.assertEquals(true, painting.isTaskExecuted());
-        Assert.assertEquals(false, driving.isTaskExecuted());
+        Assert.assertFalse(shopping.isTaskExecuted());
+        Assert.assertTrue(painting.isTaskExecuted());
+        Assert.assertFalse(driving.isTaskExecuted());
+
+//        Assert.assertEquals("Painting white walls", painting);
 
     }
 }
