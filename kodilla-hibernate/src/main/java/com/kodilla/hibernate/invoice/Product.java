@@ -10,7 +10,6 @@ import java.util.List;
 public class Product {
     private int id;
     private String name;
-    private List<Item> items = new ArrayList<>();
 
     public Product() {}
 
@@ -39,17 +38,4 @@ public class Product {
         this.name = name;
     }
 
-    @OneToMany (
-            targetEntity = Item.class,
-            mappedBy = "product",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
 }

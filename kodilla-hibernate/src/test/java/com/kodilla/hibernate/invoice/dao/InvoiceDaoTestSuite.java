@@ -29,6 +29,10 @@ public class InvoiceDaoTestSuite {
         Invoice invoice1 = new Invoice("FA002");
         Invoice invoice2 = new Invoice("FA003");
 
+        item.setProduct(product);
+        item1.setProduct(product1);
+        item2.setProduct(product2);
+
         invoice.getItems().add(item);
         invoice1.getItems().add(item1);
         invoice1.getItems().add(item2);
@@ -36,27 +40,13 @@ public class InvoiceDaoTestSuite {
         invoice2.getItems().add(item1);
         invoice2.getItems().add(item2);
 
-        product.getItems().add(item);
-        product.getItems().add(item2);
-        product1.getItems().add(item1);
-        product1.getItems().add(item2);
-        product2.getItems().add(item);
-        product2.getItems().add(item1);
-        product2.getItems().add(item2);
-
-        item.setInvoice(invoice);
-        item1.setInvoice(invoice1);
-        item1.setInvoice(invoice2);
-        item2.setInvoice(invoice);
-
-
         //When
 
-        invoiceDao.save(product);
+        invoiceDao.save(invoice);
         int itemId = item.getId();
-        invoiceDao.save(item1);
+        invoiceDao.save(invoice1);
         int itemId1 = item1.getId();
-        invoiceDao.save(item2);
+        invoiceDao.save(invoice2);
         int itemId2 = item2.getId();
 
         //Then
