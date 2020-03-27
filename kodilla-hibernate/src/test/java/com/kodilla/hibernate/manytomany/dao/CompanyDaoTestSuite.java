@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany(){
@@ -59,5 +62,42 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
+    }
+
+    @Test
+    public void testQueryFromEmployeeAndCompany() {
+        //Given
+        Employee employee1 = new Employee("Damian", "Gawron");
+        Employee employee2 = new Employee("Marcin", "Satlawa");
+        Employee employee3 = new Employee("Kuba", "Staniczak");
+
+        Company company1 = new Company("Ingram Micro");
+        Company company2 = new Company("Anovo");
+        Company company3 = new Company("Microsoft");
+
+        employee1.getCompanies().add(company1);
+        employee2.getCompanies().add(company2);
+        employee3.getCompanies().add(company3);
+
+        company1.getEmployees().add(employee1);
+        company2.getEmployees().add(employee2);
+        company3.getEmployees().add(employee3);
+
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
+
+        //When
+        List<Employee> employeeLastName = employeeDao.retrieveEmployeeWithLastName("Gawron");
+        List<Company> companyWith3letterName = companyDao.retrieveCompanyNameThreeLetters("Ano");
+
+        //Then
+        try {
+            Assert.assertEquals("Gawron", employeeLastName.toString());
+            Assert.assertEquals("Anovo", companyWith3letterName.toString());
+        } finally {
+            companyDao.deleteAll();
+        }
+
     }
 }

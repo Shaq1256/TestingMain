@@ -1,11 +1,15 @@
 package com.kodilla.hibernate.manytomany;
 
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyNameThreeLetters",
+        query = "SELECT * FROM companies WHERE company_name LIKE :company_name + '%'",
+        resultClass = Company.class
+)
 
 @Entity
 @Table(name = "COMPANIES")
