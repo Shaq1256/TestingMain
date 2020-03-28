@@ -7,7 +7,7 @@ import java.util.List;
 
 @NamedQuery(
         name = "Employee.retrieveEmployeeWithLastName",
-        query = "FROM Employees WHERE lastname = :LASTNAME"
+        query = "FROM Employee WHERE lastname = :LASTNAME"
 )
 
 @Entity
@@ -70,5 +70,14 @@ public class Employee {
 
     private void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
     }
 }

@@ -5,9 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @NamedNativeQuery(
         name = "Company.retrieveCompanyNameThreeLetters",
-        query = "SELECT * FROM companies WHERE company_name LIKE :company_name + '%'",
+        query = "SELECT * FROM companies WHERE company_name LIKE :COMPANY_NAME '%'",
         resultClass = Company.class
 )
 
@@ -54,5 +55,13 @@ public class Company {
 
     private void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
